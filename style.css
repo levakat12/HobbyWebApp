@@ -1,8 +1,8 @@
 :root {
-  --text-primary: #ffffff;
-  --text-secondary: #f0e9f4;
-  --nav-bg: rgba(255, 255, 255, 0.1);
-  --nav-border: rgba(255, 255, 255, 0.25);
+  --gb-darkest: #1f2a1f;
+  --gb-dark: #3f5a3f;
+  --gb-mid: #6f8a5f;
+  --gb-light: #a4b89a;
 }
 
 * {
@@ -17,30 +17,32 @@ body {
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  color: var(--text-primary);
+  background-color: var(--gb-darkest);
+  color: var(--gb-light);
+  font-family: "VT323", monospace;
+  letter-spacing: 0.02em;
 }
 
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1b9a9a 0%, #6d5b7b 52%, #7d5c50 100%);
   display: flex;
   flex-direction: column;
+  background-color: var(--gb-darkest);
+  padding: 0.85rem;
+  border: 4px solid var(--gb-mid);
 }
 
 .navbar {
-  width: min(1200px, calc(100% - 2.5rem));
-  height: 76px;
-  margin: 1.25rem auto 0;
-  padding: 0 1rem;
+  width: min(1100px, 100%);
+  min-height: 74px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--nav-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--nav-border);
-  border-radius: 14px;
+  border: 4px solid var(--gb-mid);
+  background-color: var(--gb-dark);
+  box-shadow: 6px 6px 0 0 var(--gb-light);
 }
 
 .nav-side {
@@ -54,128 +56,156 @@ body {
 }
 
 .nav-center {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
 }
 
 .logo {
-  font-family: "Playfair Display", serif;
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--text-primary);
+  font-family: "Press Start 2P", monospace;
+  color: var(--gb-light);
+  font-size: clamp(0.72rem, 1.8vw, 1rem);
+  text-transform: uppercase;
   text-decoration: none;
+  text-shadow: 2px 2px 0 var(--gb-darkest);
 }
 
 .nav-button,
 .menu-button {
-  border: none;
-  font: inherit;
+  border: 3px solid var(--gb-light);
+  background-color: var(--gb-mid);
+  color: var(--gb-darkest);
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.62rem;
+  line-height: 1;
+  padding: 0.65rem 0.8rem;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease,
-    box-shadow 0.25s ease;
-  background: rgba(255, 255, 255, 0.16);
-  color: var(--text-primary);
-  padding: 0.55rem 1rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  transition: transform 0.12s steps(2), background-color 0.12s steps(2),
+    box-shadow 0.12s steps(2);
+  box-shadow: 4px 4px 0 0 var(--gb-darkest);
 }
 
 .menu-button {
-  font-size: 1.2rem;
-  line-height: 1;
-  padding: 0.5rem 0.85rem;
+  font-size: 0.95rem;
+  padding: 0.48rem 0.7rem;
 }
 
 .nav-button:hover,
 .menu-button:hover {
-  background: rgba(255, 255, 255, 0.28);
-  transform: translateY(-1px);
+  background-color: var(--gb-light);
+  color: var(--gb-darkest);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--gb-dark);
 }
 
 .hero-content {
   flex: 1;
+  width: min(1100px, 100%);
+  margin: 1.25rem auto 0;
+  padding: 2rem 1.3rem;
+  border: 4px solid var(--gb-mid);
+  background-color: var(--gb-dark);
+  box-shadow: 8px 8px 0 0 var(--gb-light);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 1.25rem 3rem;
 }
 
 .hero-content h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(3rem, 8vw, 5rem);
-  line-height: 1.08;
-  letter-spacing: 0.01em;
-  color: var(--text-primary);
+  font-family: "Press Start 2P", monospace;
+  color: var(--gb-light);
+  font-size: clamp(1.7rem, 6vw, 4rem);
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 var(--gb-darkest);
 }
 
 .hero-content p {
   margin-top: 1.35rem;
-  max-width: 720px;
-  font-size: clamp(1rem, 2.15vw, 1.25rem);
-  line-height: 1.7;
-  color: var(--text-secondary);
+  max-width: 700px;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  line-height: 1.35;
+  color: var(--gb-light);
+  padding: 0.75rem 1rem;
+  border: 3px solid var(--gb-mid);
+  background-color: var(--gb-darkest);
 }
 
 .scroll-indicator {
-  margin-top: 2rem;
+  margin-top: 1.9rem;
   display: inline-flex;
+  width: 52px;
+  height: 52px;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
+  border: 3px solid var(--gb-mid);
+  background-color: var(--gb-light);
+  box-shadow: 5px 5px 0 0 var(--gb-darkest);
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.12);
-  transition: transform 0.25s ease, background-color 0.25s ease;
+  transition: transform 0.12s steps(2), background-color 0.12s steps(2),
+    box-shadow 0.12s steps(2);
 }
 
 .arrow-down {
-  width: 12px;
-  height: 12px;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  transform: rotate(45deg);
+  width: 14px;
+  height: 14px;
+  border-right: 4px solid var(--gb-darkest);
+  border-bottom: 4px solid var(--gb-darkest);
+  transform: rotate(45deg) translate(-1px, -1px);
 }
 
 .scroll-indicator:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(4px);
+  background-color: var(--gb-mid);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 0 var(--gb-dark);
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 0.6rem;
+  }
+
   .navbar {
-    width: calc(100% - 1.5rem);
-    margin-top: 0.75rem;
-    height: 70px;
-    padding: 0 0.75rem;
+    min-height: 64px;
+    padding: 0.5rem 0.65rem;
+    box-shadow: 4px 4px 0 0 var(--gb-light);
   }
 
   .logo {
-    font-size: 1.15rem;
+    font-size: 0.6rem;
+    text-shadow: 1px 1px 0 var(--gb-darkest);
   }
 
   .nav-button,
   .menu-button {
-    padding: 0.45rem 0.75rem;
-    font-size: 0.88rem;
+    font-size: 0.5rem;
+    padding: 0.52rem 0.55rem;
+    box-shadow: 3px 3px 0 0 var(--gb-darkest);
+  }
+
+  .menu-button {
+    font-size: 0.78rem;
+    padding: 0.42rem 0.54rem;
   }
 
   .hero-content {
-    padding: 1.5rem 1rem 2.5rem;
+    margin-top: 0.9rem;
+    padding: 1.35rem 0.8rem 1.5rem;
+    box-shadow: 5px 5px 0 0 var(--gb-light);
   }
 
   .hero-content p {
     margin-top: 1rem;
-    line-height: 1.6;
+    font-size: 1.2rem;
+    padding: 0.65rem 0.7rem;
   }
 
   .scroll-indicator {
-    margin-top: 1.6rem;
+    margin-top: 1.35rem;
+    width: 46px;
+    height: 46px;
   }
 }
