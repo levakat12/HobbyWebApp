@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Hobby Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="light">
+    <!-- same gameboy frame as home page -->
+    <div class="boxWrap">
+      <div class="darkWrap">
+        <div class="greenThing">
+          <header class="topPart" role="banner">
+            <nav class="topRow" aria-label="Main navigation">
+              <div class="sideCol leftOne">
+                <a class="btnMenu linkBtn" href="index.html" aria-label="Back to home">&lt;</a>
+              </div>
+
+              <div class="midOne">
+                <a href="index.html" class="logoTxt" aria-label="Hobby Tracker home">Hobby Tracker</a>
+              </div>
+
+              <div class="sideCol rightOne">
+                <button
+                  class="btnTop modeBtn"
+                  id="modeBtn"
+                  type="button"
+                  aria-label="Switch to light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                >
+                  ☼
+                </button>
+              </div>
+            </nav>
+          </header>
+
+          <!-- centered login box inside screen -->
+          <main class="authMain" id="authMain">
+            <section class="authBox" aria-labelledby="login-title">
+              <h1 id="login-title">Login</h1>
+              <p class="authMini">Continue tracking your hobbies and progress.</p>
+
+              <form class="formWrap" id="formLoginNow" action="#" method="post">
+                <label class="lblTxt" for="email">Email</label>
+                <input class="inpTxt" id="email" name="email" type="email" placeholder="you@example.com" required />
+
+                <label class="lblTxt" for="password">Password</label>
+                <input
+                  class="inpTxt"
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  required
+                />
+
+                <button class="btnSend" type="submit">Login</button>
+              </form>
+
+              <a class="smallLink" href="register.html" aria-label="Open register page">
+                Need an account? Register
+              </a>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

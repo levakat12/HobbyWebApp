@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hobbies Tracker</title>
+    <title>Hobby Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,33 +12,124 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <header class="hero" role="banner">
-      <nav class="navbar" aria-label="Main navigation">
-        <div class="nav-side nav-left">
-          <button class="menu-button" type="button" aria-label="Open dashboard menu">☰</button>
+  <body data-theme="light">
+    <!-- fake gameboy body: light shell -> dark bezel -> green screen -->
+    <div class="boxWrap">
+      <div class="darkWrap">
+        <div class="greenThing">
+          <header class="topPart" role="banner">
+            <!-- top controls -->
+            <nav class="topRow" aria-label="Main navigation">
+              <div class="sideCol leftOne">
+                <button
+                  class="btnMenu"
+                  id="menuList-toggle"
+                  type="button"
+                  aria-label="Open dashboard menu"
+                  aria-expanded="false"
+                  aria-controls="menuList"
+                >
+                  ☰
+                </button>
+              </div>
+
+              <div class="midOne">
+                <a href="#home" class="logoTxt" aria-label="Hobby Tracker home">Hobby Tracker</a>
+              </div>
+
+              <div class="sideCol rightOne">
+                <button
+                  class="btnTop modeBtn"
+                  id="modeBtn"
+                  type="button"
+                  aria-label="Switch to light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                >
+                  ☼
+                </button>
+                <a class="btnTop linkBtn" href="login.html">Login</a>
+              </div>
+            </nav>
+
+            <!-- popup menu from left button -->
+            <aside class="menuList" id="menuList" aria-label="Dashboard menu">
+              <a class="menuList-item" href="#">Hobby Dashboard</a>
+              <a class="menuList-item" href="#">Add Hobby</a>
+              <a class="menuList-item" href="#">Analytics</a>
+              <a class="menuList-item" href="#">Settings</a>
+              <span class="menuList-divider" aria-hidden="true"></span>
+              <a class="menuList-item logout" href="login.html">Logout</a>
+            </aside>
+          </header>
+
+          <!-- each secBlock is one scroll "page" -->
+          <main class="scrollThing">
+            <section class="secBlock secBlock-hero" id="home" aria-labelledby="bigTitle">
+              <div class="secBlock-inner">
+                <h1 id="bigTitle">Hobby Tracker</h1>
+                <p>
+                  Track every hobby in one focused place. Scroll down to see how Hobby Tracker helps
+                  you organize goals, log sessions, and stay consistent over time.
+                </p>
+              </div>
+
+              <a class="arrGo" href="#overview" aria-label="Scroll to app overview">
+                <span class="arrIcon" aria-hidden="true"></span>
+              </a>
+            </section>
+
+            <section class="secBlock" id="overview" aria-labelledby="whatTitle">
+              <div class="secBlock-inner">
+                <h2 id="whatTitle">What It Proposes</h2>
+                <p>
+                  Hobby Tracker is designed as a personal progress console for hobbyists. Instead of
+                  scattered notes and forgotten plans, you get one timeline to track effort, results,
+                  and momentum with clear structure.
+                </p>
+              </div>
+
+              <!-- mini arrow keeps user moving down -->
+              <a class="arrGo arrGo-mini" href="#features" aria-label="Scroll to next section">
+                <span class="arrIcon" aria-hidden="true"></span>
+              </a>
+            </section>
+
+            <section class="secBlock" id="features" aria-labelledby="howTitle">
+              <div class="secBlock-inner">
+                <h2 id="howTitle">How It Works</h2>
+                <ul class="listBits">
+                  <li>Create each hobby with your own goals and focus area.</li>
+                  <li>Log sessions with time spent, notes, and milestones reached.</li>
+                  <li>Monitor streaks and consistency through visual progress snapshots.</li>
+                  <li>Review history to understand what routines actually work for you.</li>
+                </ul>
+              </div>
+
+              <!-- same mini arrow on this section too -->
+              <a class="arrGo arrGo-mini" href="#next-step" aria-label="Scroll to next section">
+                <span class="arrIcon" aria-hidden="true"></span>
+              </a>
+            </section>
+
+            <section class="secBlock secBlock-end" id="next-step" aria-labelledby="endTitle">
+              <div class="secBlock-inner">
+                <h2 id="endTitle">Built For Consistency</h2>
+                <p>
+                  The goal is simple: help you keep showing up. Start with one hobby, build the habit,
+                  and let your progress history guide your next step.
+                </p>
+                <!-- main CTA -->
+                <a class="btnStart" href="login.html">GET STARTED</a>
+              </div>
+
+              <span class="lineEnd" aria-hidden="true"></span>
+            </section>
+          </main>
         </div>
+      </div>
+    </div>
 
-        <div class="nav-center">
-          <a href="#" class="logo" aria-label="Hobbies Tracker home">Hobbies Tracker</a>
-        </div>
-
-        <div class="nav-side nav-right">
-          <button class="nav-button" type="button">Login</button>
-        </div>
-      </nav>
-
-      <section class="hero-content" aria-labelledby="hero-title">
-        <h1 id="hero-title">Hobbies Tracker</h1>
-        <p>
-          This site aims to provide a convenient tool for hobbyists to monitor and manage the
-          progress of their hobbies effectively.
-        </p>
-
-        <a class="scroll-indicator" href="#" aria-label="Scroll down to read more">
-          <span class="arrow-down" aria-hidden="true"></span>
-        </a>
-      </section>
-    </header>
+    <script src="script.js"></script>
   </body>
 </html>
