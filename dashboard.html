@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Hobby Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="light" class="pageDash">
+    <!-- same frame system, but this page opens to fullscreen mode -->
+    <div class="boxWrap">
+      <div class="darkWrap">
+        <div class="greenThing">
+          <header class="topPart" role="banner">
+            <nav class="topRow" aria-label="Main navigation">
+              <div class="sideCol leftOne">
+                <button
+                  class="btnMenu"
+                  id="menuList-toggle"
+                  type="button"
+                  aria-label="Open dashboard menu"
+                  aria-expanded="false"
+                  aria-controls="menuList"
+                >
+                  ☰
+                </button>
+              </div>
+
+              <div class="midOne">
+                <a href="dashboard.html" class="logoTxt" aria-label="Hobby Tracker dashboard">Hobby Tracker</a>
+              </div>
+
+              <div class="sideCol rightOne">
+                <button
+                  class="btnTop modeBtn"
+                  id="modeBtn"
+                  type="button"
+                  aria-label="Switch to light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                >
+                  ☼
+                </button>
+                <a class="btnTop linkBtn" href="login.html">Logout</a>
+              </div>
+            </nav>
+
+            <!-- same quick menu used on home -->
+            <aside class="menuList" id="menuList" aria-label="Dashboard menu">
+              <a class="menuList-item" href="dashboard.html">Hobby Dashboard</a>
+              <a class="menuList-item" href="add-hobby.html">Add Hobby</a>
+              <a class="menuList-item" href="#">Settings</a>
+              <span class="menuList-divider" aria-hidden="true"></span>
+              <a class="menuList-item logout" href="login.html">Logout</a>
+            </aside>
+          </header>
+
+          <main class="dashMain" id="dashMain">
+            <section class="dashTop" aria-labelledby="dashTitle">
+              <div>
+                <h1 id="dashTitle">Hobby Dashboard</h1>
+                <p class="dashMini">Each block is one hobby with current progress status.</p>
+              </div>
+              <a class="btnTop linkBtn dashAddBtn" href="add-hobby.html">+ Add Hobby</a>
+            </section>
+
+            <section class="hobbyGridDash" aria-label="Hobby blocks with progress">
+              <a class="hobbyBlock hobbyLink" href="hobby.html?h=Guitar%20Practice">
+                <div class="hobbyRow">
+                  <h3>Guitar Practice</h3>
+                  <span class="hobbyTag">62%</span>
+                </div>
+                <p>Goal: Learn fingerstyle intro and keep a 30 min/day routine.</p>
+                <ul class="goalMini">
+                  <li>Clean fingerstyle intro section</li>
+                  <li>Hold 30 min daily practice for 10 days</li>
+                  <li>Record one full smooth take</li>
+                </ul>
+                <div class="progWrap" role="img" aria-label="Guitar progress 62 percent">
+                  <div class="progFill" style="width: 62%"></div>
+                </div>
+              </a>
+
+              <a class="hobbyBlock hobbyLink" href="hobby.html?h=Running">
+                <div class="hobbyRow">
+                  <h3>Running</h3>
+                  <span class="hobbyTag">45%</span>
+                </div>
+                <p>Goal: Reach 5km pace consistency and improve breathing control.</p>
+                <ul class="goalMini">
+                  <li>Run 5km two times this week</li>
+                  <li>Keep pace under target window</li>
+                  <li>Practice controlled breathing drills</li>
+                </ul>
+                <div class="progWrap" role="img" aria-label="Running progress 45 percent">
+                  <div class="progFill" style="width: 45%"></div>
+                </div>
+              </a>
+
+              <a class="hobbyBlock hobbyLink" href="hobby.html?h=Sketching">
+                <div class="hobbyRow">
+                  <h3>Sketching</h3>
+                  <span class="hobbyTag">81%</span>
+                </div>
+                <p>Goal: Build daily anatomy sketches and finish one full figure study.</p>
+                <ul class="goalMini">
+                  <li>Complete 7 anatomy warmups this week</li>
+                  <li>Finish one full figure study</li>
+                  <li>Review line quality and fix weak areas</li>
+                </ul>
+                <div class="progWrap" role="img" aria-label="Sketching progress 81 percent">
+                  <div class="progFill" style="width: 81%"></div>
+                </div>
+              </a>
+
+              <a class="hobbyBlock hobbyLink" href="hobby.html?h=Cooking">
+                <div class="hobbyRow">
+                  <h3>Cooking</h3>
+                  <span class="hobbyTag">33%</span>
+                </div>
+                <p>Goal: Learn 10 new balanced meals and improve prep speed.</p>
+                <ul class="goalMini">
+                  <li>Master 3 new meal recipes</li>
+                  <li>Cut prep time by 15%</li>
+                  <li>Plan weekly grocery list better</li>
+                </ul>
+                <div class="progWrap" role="img" aria-label="Cooking progress 33 percent">
+                  <div class="progFill" style="width: 33%"></div>
+                </div>
+              </a>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

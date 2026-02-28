@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Hobby | Hobby Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="light" class="pageDash">
+    <!-- same frame layout, this screen is for creating a new hobby -->
+    <div class="boxWrap">
+      <div class="darkWrap">
+        <div class="greenThing">
+          <header class="topPart" role="banner">
+            <nav class="topRow" aria-label="Main navigation">
+              <div class="sideCol leftOne">
+                <a class="btnMenu linkBtn" href="dashboard.html" aria-label="Back to dashboard">&lt;</a>
+              </div>
+
+              <div class="midOne">
+                <a href="dashboard.html" class="logoTxt" aria-label="Hobby Tracker dashboard">Hobby Tracker</a>
+              </div>
+
+              <div class="sideCol rightOne">
+                <button
+                  class="btnTop modeBtn"
+                  id="modeBtn"
+                  type="button"
+                  aria-label="Switch to light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                >
+                  ☼
+                </button>
+                <a class="btnTop linkBtn" href="login.html">Logout</a>
+              </div>
+            </nav>
+          </header>
+
+          <main class="authMain" id="authMain">
+            <section class="authBox" aria-labelledby="addHobbyTitle">
+              <h1 id="addHobbyTitle">Add Hobby</h1>
+              <p class="authMini">Create a hobby block and start tracking progress.</p>
+
+              <form class="formWrap" id="formAddHobby" action="#" method="post">
+                <label class="lblTxt" for="hobbyName">Hobby Name</label>
+                <input
+                  class="inpTxt"
+                  id="hobbyName"
+                  name="hobbyName"
+                  type="text"
+                  placeholder="e.g. Guitar Practice"
+                  required
+                />
+
+                <label class="lblTxt" for="hobbyGoal1">Goal 1</label>
+                <input
+                  class="inpTxt"
+                  id="hobbyGoal1"
+                  name="hobbyGoal1"
+                  type="text"
+                  placeholder="Main goal"
+                  required
+                />
+
+                <label class="lblTxt" for="hobbyGoal2">Goal 2</label>
+                <input
+                  class="inpTxt"
+                  id="hobbyGoal2"
+                  name="hobbyGoal2"
+                  type="text"
+                  placeholder="Second goal"
+                />
+
+                <label class="lblTxt" for="hobbyGoal3">Goal 3</label>
+                <input
+                  class="inpTxt"
+                  id="hobbyGoal3"
+                  name="hobbyGoal3"
+                  type="text"
+                  placeholder="Third goal"
+                />
+
+                <label class="lblTxt" for="hobbyStartProgress">Starting Progress (%)</label>
+                <input
+                  class="inpTxt"
+                  id="hobbyStartProgress"
+                  name="hobbyStartProgress"
+                  type="number"
+                  min="0"
+                  max="100"
+                  placeholder="0 - 100"
+                />
+
+                <button class="btnSend" type="submit">Save Hobby</button>
+              </form>
+
+              <a class="smallLink" href="dashboard.html">Back to Dashboard</a>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

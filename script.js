@@ -2,6 +2,7 @@
   const themeToggle = document.getElementById("modeBtn");
   const dashboardMenuToggle = document.getElementById("menuList-toggle");
   const dashboardMenu = document.getElementById("menuList");
+  const dashLinks = Array.from(document.querySelectorAll("[data-go-dashboard]"));
   const panels = Array.from(document.querySelectorAll(".secBlock"));
   const scrollRoot = document.querySelector(".scrollThing");
 
@@ -39,6 +40,30 @@
     });
   }
 
+  // saves a small flag so dashboard page can play open-to-full animation
+  dashLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      try {
+        window.sessionStorage.setItem("dash-open", "1");
+      } catch {
+        // no-op if storage is blocked
+      }
+    });
+  });
+
+  // dashboard entry animation only when coming from home menu click
+  if (document.body.classList.contains("pageDash")) {
+    try {
+      const shouldAnimateDash = window.sessionStorage.getItem("dash-open") === "1";
+      if (shouldAnimateDash) {
+        document.body.classList.add("dashStartAnim");
+        window.sessionStorage.removeItem("dash-open");
+      }
+    } catch {
+      // no-op if storage is blocked
+    }
+  }
+
   if (dashboardMenuToggle && dashboardMenu) {
     // menu helper so open/close always stays in sync with aria
     const setMenuState = (open) => {
@@ -65,6 +90,77 @@
         setMenuState(false);
       }
     });
+  }
+
+  // fills hobby details page title/data from query like hobby.html?h=Running
+  const hobbyNameEl = document.querySelector("[data-hobby-name]");
+  if (hobbyNameEl) {
+    const hobbyData = {
+      "Guitar Practice": {
+        progress: 62,
+        goals: [
+          "Clean fingerstyle intro section",
+          "Hold 30 min daily practice for 10 days",
+          "Record one full smooth take",
+        ],
+      },
+      Running: {
+        progress: 45,
+        goals: [
+          "Run 5km two times this week",
+          "Keep pace under target window",
+          "Practice controlled breathing drills",
+        ],
+      },
+      Sketching: {
+        progress: 81,
+        goals: [
+          "Complete 7 anatomy warmups this week",
+          "Finish one full figure study",
+          "Review line quality and fix weak areas",
+        ],
+      },
+      Cooking: {
+        progress: 33,
+        goals: [
+          "Master 3 new meal recipes",
+          "Cut prep time by 15%",
+          "Plan weekly grocery list better",
+        ],
+      },
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const hobbyFromUrl = params.get("h");
+    const safeName = hobbyFromUrl && hobbyFromUrl.trim() ? hobbyFromUrl.trim() : "Hobby Focus";
+    const selected = hobbyData[safeName] || { progress: 50, goals: ["Set first goal", "Track progress daily"] };
+
+    hobbyNameEl.textContent = safeName;
+    document.title = `${safeName} | Hobby Tracker`;
+
+    const goalText = document.querySelector("[data-hobby-goal]");
+    if (goalText) {
+      goalText.textContent = `Goal: Keep daily focused work in ${safeName} and finish current milestone.`;
+    }
+
+    const prog = document.querySelector("[data-hobby-prog]");
+    const progLabel = document.querySelector("[data-hobby-prog-label]");
+    if (prog) {
+      prog.style.width = `${selected.progress}%`;
+    }
+    if (progLabel) {
+      progLabel.textContent = `${selected.progress}%`;
+    }
+
+    const goalsList = document.querySelector("[data-hobby-goals]");
+    if (goalsList) {
+      goalsList.innerHTML = "";
+      selected.goals.forEach((goal) => {
+        const li = document.createElement("li");
+        li.textContent = goal;
+        goalsList.appendChild(li);
+      });
+    }
   }
 
   if (panels.length === 0 || !scrollRoot) {

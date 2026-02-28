@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hobby Details | Hobby Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="light" class="pageDash">
+    <!-- same frame layout, now for one hobby details screen -->
+    <div class="boxWrap">
+      <div class="darkWrap">
+        <div class="greenThing">
+          <header class="topPart" role="banner">
+            <nav class="topRow" aria-label="Main navigation">
+              <div class="sideCol leftOne">
+                <a class="btnMenu linkBtn" href="dashboard.html" aria-label="Back to dashboard">&lt;</a>
+              </div>
+
+              <div class="midOne">
+                <a href="dashboard.html" class="logoTxt" aria-label="Hobby Tracker dashboard">Hobby Tracker</a>
+              </div>
+
+              <div class="sideCol rightOne">
+                <button
+                  class="btnTop modeBtn"
+                  id="modeBtn"
+                  type="button"
+                  aria-label="Switch to light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                >
+                  ☼
+                </button>
+                <a class="btnTop linkBtn" href="login.html">Logout</a>
+              </div>
+            </nav>
+          </header>
+
+          <main class="hobbyMain" id="hobbyMain">
+            <section class="hobbyTop" aria-labelledby="hobbyNameTitle">
+              <div>
+                <h1 id="hobbyNameTitle" data-hobby-name>Hobby Focus</h1>
+                <p class="hobbySub">Detailed progress board for this hobby.</p>
+              </div>
+            </section>
+
+            <section class="hobbyStats" aria-label="Hobby quick stats">
+              <article class="hobbyStatCard">
+                <h2>Total Sessions</h2>
+                <p class="dashNum">38</p>
+              </article>
+              <article class="hobbyStatCard">
+                <h2>Current Streak</h2>
+                <p class="dashNum">7 Days</p>
+              </article>
+              <article class="hobbyStatCard">
+                <h2>This Week</h2>
+                <p class="dashNum">5 Logs</p>
+              </article>
+              <article class="hobbyStatCard">
+                <h2>Milestones</h2>
+                <p class="dashNum">2 Done</p>
+              </article>
+            </section>
+
+            <section class="hobbyProgBlock" aria-label="Current progress">
+              <div class="hobbyRow">
+                <h3>Current Goal Progress</h3>
+                <span class="hobbyTag" data-hobby-prog-label>62%</span>
+              </div>
+              <p data-hobby-goal>Goal: Keep daily focused practice and finish current milestone.</p>
+              <div class="progWrap" role="img" aria-label="Current goal progress 62 percent">
+                <div class="progFill" data-hobby-prog style="width: 62%"></div>
+              </div>
+            </section>
+
+            <section class="hobbyGoalBlock" aria-label="Goal list">
+              <h3>Goals For This Hobby</h3>
+              <ul class="goalDetailList" data-hobby-goals>
+                <li>Goal list loading...</li>
+              </ul>
+            </section>
+
+            <section class="hobbyTrend" aria-label="Weekly trend mockup">
+              <h3>Weekly Effort Trend</h3>
+              <div class="trendBars">
+                <span class="trendOne" style="height: 38%"></span>
+                <span class="trendOne" style="height: 58%"></span>
+                <span class="trendOne" style="height: 46%"></span>
+                <span class="trendOne" style="height: 68%"></span>
+                <span class="trendOne" style="height: 76%"></span>
+                <span class="trendOne" style="height: 62%"></span>
+                <span class="trendOne" style="height: 84%"></span>
+              </div>
+            </section>
+
+            <section class="hobbyLogs" aria-label="Recent sessions">
+              <h3>Recent Sessions</h3>
+              <article class="logItem">
+                <span class="logDay">Today</span>
+                <p>35 min focused session. Worked on weak parts and reviewed notes.</p>
+              </article>
+              <article class="logItem">
+                <span class="logDay">Yesterday</span>
+                <p>25 min session. Repeated last milestone and cleaned technique mistakes.</p>
+              </article>
+              <article class="logItem">
+                <span class="logDay">2 days ago</span>
+                <p>40 min session. Good pace and better consistency than last week.</p>
+              </article>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
