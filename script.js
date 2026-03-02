@@ -3,8 +3,197 @@
   const dashboardMenuToggle = document.getElementById("menuList-toggle");
   const dashboardMenu = document.getElementById("menuList");
   const dashLinks = Array.from(document.querySelectorAll("[data-go-dashboard]"));
+  const logoutLinks = Array.from(document.querySelectorAll("[data-logout-link]"));
+  const loginForm = document.getElementById("formLoginNow");
+  const bypassLoginBtn = document.getElementById("bypassLoginBtn");
+  const registerForm = document.getElementById("formRegNow");
+  const loginMsg = document.getElementById("loginMsg");
+  const registerMsg = document.getElementById("registerMsg");
+  const goBackBtn = document.getElementById("goBackBtn");
   const panels = Array.from(document.querySelectorAll(".secBlock"));
   const scrollRoot = document.querySelector(".scrollThing");
+  const usersKey = "hobby-users";
+  const authKey = "hobby-auth";
+  const currentUserKey = "hobby-current-user";
+
+  const readStore = (key) => {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  };
+
+  const writeStore = (key, value) => {
+    try {
+      window.localStorage.setItem(key, value);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const removeStore = (key) => {
+    try {
+      window.localStorage.removeItem(key);
+    } catch {
+      // no-op if storage is blocked
+    }
+  };
+
+  // tiny mock auth store: keeps fake users and current login in localStorage
+  const getUsers = () => {
+    const raw = readStore(usersKey);
+    if (!raw) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const saveUsers = (users) => writeStore(usersKey, JSON.stringify(users));
+
+  const setLoggedIn = (email) => {
+    const wroteAuth = writeStore(authKey, "1");
+    const wroteUser = writeStore(currentUserKey, email);
+    return wroteAuth && wroteUser;
+  };
+
+  const clearLoggedIn = () => {
+    removeStore(authKey);
+    removeStore(currentUserKey);
+  };
+
+  const setAuthMessage = (msgEl, text, ok = false) => {
+    if (!msgEl) {
+      return;
+    }
+
+    msgEl.textContent = text;
+    msgEl.classList.remove("ok", "bad");
+
+    if (!text) {
+      return;
+    }
+
+    msgEl.classList.add(ok ? "ok" : "bad");
+  };
+
+  // only logout links on inner pages clear mock session
+  logoutLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      clearLoggedIn();
+      window.location.href = "login.html";
+    });
+  });
+
+  if (goBackBtn) {
+    goBackBtn.addEventListener("click", () => {
+      // if user came from another page, go there; else safe fallback
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "dashboard.html";
+      }
+    });
+  }
+
+  if (bypassLoginBtn) {
+    bypassLoginBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const didSaveGuest = setLoggedIn("guest@mock.local");
+      if (didSaveGuest) {
+        setAuthMessage(loginMsg, "Guest mode on. Opening dashboard...", true);
+      } else {
+        setAuthMessage(loginMsg, "Guest mode on (storage off). Opening dashboard...", true);
+      }
+
+      window.setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 240);
+    });
+  }
+
+  // login mock: checks if email/pass match one saved fake user
+  if (loginForm) {
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      setAuthMessage(loginMsg, "");
+
+      const emailInput = String(loginForm.elements.email?.value || "").trim().toLowerCase();
+      const passwordInput = String(loginForm.elements.password?.value || "");
+      const users = getUsers();
+      const found = users.find((user) => user.email === emailInput && user.password === passwordInput);
+
+      if (!found) {
+        setAuthMessage(loginMsg, "Login failed. Check email/password or register first.");
+        return;
+      }
+
+      if (!setLoggedIn(found.email)) {
+        setAuthMessage(loginMsg, "Storage blocked. Could not start session.");
+        return;
+      }
+
+      setAuthMessage(loginMsg, "Login ok. Sending you to dashboard...", true);
+      window.setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 420);
+    });
+  }
+
+  // register mock: saves fake user in localStorage then logs them in
+  if (registerForm) {
+    registerForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      setAuthMessage(registerMsg, "");
+
+      const usernameInput = String(registerForm.elements.username?.value || "").trim();
+      const emailInput = String(registerForm.elements.email?.value || "").trim().toLowerCase();
+      const passwordInput = String(registerForm.elements.password?.value || "");
+
+      if (!usernameInput || !emailInput || !passwordInput) {
+        setAuthMessage(registerMsg, "Please fill all fields.");
+        return;
+      }
+
+      if (passwordInput.length < 4) {
+        setAuthMessage(registerMsg, "Password too short. Use 4+ chars.");
+        return;
+      }
+
+      const users = getUsers();
+      const exists = users.some((user) => user.email === emailInput);
+      if (exists) {
+        setAuthMessage(registerMsg, "Email already registered. Try login.");
+        return;
+      }
+
+      users.push({
+        username: usernameInput,
+        email: emailInput,
+        password: passwordInput,
+      });
+
+      if (!saveUsers(users) || !setLoggedIn(emailInput)) {
+        setAuthMessage(registerMsg, "Storage blocked. Could not save account.");
+        return;
+      }
+
+      setAuthMessage(registerMsg, "Account created. Opening dashboard...", true);
+      registerForm.reset();
+      window.setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 420);
+    });
+  }
 
   // theme helper: updates dataset + icon + aria in one place
   const applyTheme = (theme) => {
@@ -219,13 +408,10 @@
     const nextStart = starts[Math.min(segmentIndex + 1, starts.length - 1)];
     const distance = Math.max(nextStart - start, 1);
     const progress = (currentTop - start) / distance;
-    //let targetIndex = segmentIndex;
-
-    if (lastDirection >= 0) {
-      targetIndex = progress >= 0.35 ? segmentIndex + 1 : segmentIndex;
-    } else {
-      targetIndex = progress <= 0.65 ? segmentIndex : segmentIndex + 1;
-    }
+    const targetIndex =
+      lastDirection >= 0
+        ? (progress >= 0.35 ? segmentIndex + 1 : segmentIndex)
+        : (progress <= 0.65 ? segmentIndex : segmentIndex + 1);
 
     snapToPanel(targetIndex);
   };

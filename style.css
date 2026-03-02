@@ -526,6 +526,22 @@ body[data-theme="dark"]::before {
   text-decoration: underline;
 }
 
+/* tiny auth message under forms */
+.formMsg {
+  margin-top: 0.7rem;
+  min-height: 1.1rem;
+  font-size: 1rem;
+  color: var(--gb-mid);
+}
+
+.formMsg.ok {
+  color: var(--gb-light);
+}
+
+.formMsg.bad {
+  color: var(--gb-mid);
+}
+
 /* dashboard main area */
 .dashMain {
   position: relative;
