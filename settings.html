@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings | Hobby Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="light" class="pageDash">
+    <!-- same frame layout, this screen is app settings -->
+    <div class="boxWrap">
+      <div class="darkWrap">
+        <div class="greenThing">
+          <header class="topPart" role="banner">
+            <nav class="topRow" aria-label="Main navigation">
+              <div class="sideCol leftOne">
+                <button
+                  class="btnMenu"
+                  id="menuList-toggle"
+                  type="button"
+                  aria-label="Open dashboard menu"
+                  aria-expanded="false"
+                  aria-controls="menuList"
+                >
+                  ☰
+                </button>
+              </div>
+
+              <div class="midOne">
+                <a href="dashboard.html" class="logoTxt" aria-label="Hobby Tracker dashboard">Hobby Tracker</a>
+              </div>
+
+              <div class="sideCol rightOne">
+                <button
+                  class="btnTop modeBtn"
+                  id="modeBtn"
+                  type="button"
+                  aria-label="Switch to light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                >
+                  ☼
+                </button>
+                <a class="btnTop linkBtn" href="login.html">Logout</a>
+              </div>
+            </nav>
+
+            <aside class="menuList" id="menuList" aria-label="Dashboard menu">
+              <a class="menuList-item" href="dashboard.html">Hobby Dashboard</a>
+              <a class="menuList-item" href="add-hobby.html">Add Hobby</a>
+              <a class="menuList-item" href="settings.html">Settings</a>
+              <span class="menuList-divider" aria-hidden="true"></span>
+              <a class="menuList-item logout" href="login.html">Logout</a>
+            </aside>
+          </header>
+
+          <main class="settingsMain" id="settingsMain">
+            <section class="settingsTop" aria-labelledby="settingsTitle">
+              <div>
+                <h1 id="settingsTitle">Settings</h1>
+                <p class="settingsSub">Control your app preferences and account options.</p>
+              </div>
+            </section>
+
+            <section class="settingsGrid" aria-label="General settings">
+              <article class="settingsCard">
+                <h2>Theme Mode</h2>
+                <p>Use the sun/moon icon in topbar to switch light and dark mode.</p>
+              </article>
+
+              <article class="settingsCard">
+                <h2>Weekly Goal Reminder</h2>
+                <div class="fakeToggleRow">
+                  <span class="fakeToggle on"></span>
+                  <span>Enabled</span>
+                </div>
+              </article>
+
+              <article class="settingsCard">
+                <h2>Default Session Length</h2>
+                <div class="settingsInputRow">
+                  <label class="lblTxt" for="sessionLen">Minutes</label>
+                  <input class="inpTxt" id="sessionLen" type="number" value="30" min="5" max="180" />
+                </div>
+              </article>
+
+              <article class="settingsCard">
+                <h2>Data Backup</h2>
+                <div class="settingsActionRow">
+                  <button class="btnTop" type="button">Export</button>
+                  <button class="btnTop" type="button">Import</button>
+                </div>
+              </article>
+            </section>
+
+            <section class="settingsDanger" aria-label="Danger zone">
+              <h3>Danger Zone</h3>
+              <p>Use carefully. These actions are irreversible in this mock flow.</p>
+              <div class="settingsActionRow">
+                <button class="btnSend" type="button">Reset All Progress</button>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
